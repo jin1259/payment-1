@@ -77,6 +77,19 @@ phases:
                     image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
                     ports:
                       - containerPort: 8080
+                    ports:
+                      - containerPort: 8080
+                    env:
+                      - name: KAFKA_URL     #configmap
+                        valueFrom:          #configmap
+                          configMapKeyRef:  #configmap
+                            name: kafka-config  #configmap
+                            key: KAFKA_URL      #configmap
+                      - name: LOG_FILE      #configmap
+                        valueFrom:          #configmap
+                          configMapKeyRef:  #configmap
+                            name: kafka-config #configmap
+                            key: LOG_FILE      #configmap
                     resources:
                     #  limits:       #HPA
                     #    cpu: 500m   #HPA
