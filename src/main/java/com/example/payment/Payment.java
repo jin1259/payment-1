@@ -28,11 +28,18 @@ public class Payment {
         //     e.printStackTrace();
         // }
         // circuit breaker end
+        
+        //configmap
+        System.out.println("########## Configmap KAFKA_URL => " + System.getenv("KAFKA_URL"));
+        this.setStatus(System.getenv("KAFKA_URL"));
 
+        System.out.println("########## Configmap LOG_FILE => " + System.getenv("LOG_FILE"));
+        this.setStatus(System.getenv("LOG_FILE"));
+        //configmap
+        
         PaymentApproved paymentApproved = new PaymentApproved();
         BeanUtils.copyProperties(this, paymentApproved);
-        paymentApproved.publishAfterCommit();
-
+        paymentApproved.publishAfterCommit();     
 
     }
 
@@ -41,8 +48,6 @@ public class Payment {
         PaymentCanceled paymentCanceled = new PaymentCanceled();
         BeanUtils.copyProperties(this, paymentCanceled);
         paymentCanceled.publishAfterCommit();
-
-
     }
 
     public Long getId() {
