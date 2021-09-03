@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    _PROJECT_NAME: "user15-payment"
+    _PROJECT_NAME: "user06-payment-v2"
 
 phases:
   install:
